@@ -143,13 +143,21 @@ describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
   for (var prefix = 644; prefix <= 649; prefix++) {
-    it('has a prefix of ' + prefix + ' and a length of 16', function(){
-      detectNetwork(prefix.toString().concat('1234567890123')).should.equal('Discover');
-    });
-    it('has a prefix of ' + prefix + ' and a length of 19', function(){
-      detectNetwork(prefix.toString().concat('1234567890123456')).should.equal('Discover');
-    });
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        detectNetwork(prefix.toString().concat('1234567890123')).should.equal('Discover');
+        console.log(prefix.toString().concat('1234567890123'));
+        });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        detectNetwork(prefix.toString().concat('1234567890123456')).should.equal('Discover');
+        console.log(prefix.toString().concat('1234567890123456'));
+        });
+
+    })(prefix)
   };
+
 
   it('has a prefix of 6011 and a length of 16', function(){
       detectNetwork('6011123456789012').should.equal('Discover');
@@ -170,38 +178,119 @@ describe('Discover', function() {
 
 describe('Maestro', function() {
 
-  var prefix_array = ['5018','5020','5038','6304'];
+  var p1 = '5018';
 
-  for (var i = 0; i < prefix_array.length; i++) {
+  it('has a prefix of ' + p1 + ' and a length of 12', function(){
+    detectNetwork(p1.concat('12345678')).should.equal('Maestro');
+    console.log(p1.concat('12345678'));
+  });
+  it('has a prefix of ' + p1 + ' and a length of 13', function(){
+    detectNetwork(p1.concat('123456789')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p1 + ' and a length of 14', function(){
+    detectNetwork(p1.concat('1234567890')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p1 + ' and a length of 15', function(){
+    detectNetwork(p1.concat('12345678901')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p1 + ' and a length of 16', function(){
+    detectNetwork(p1.concat('123456789012')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p1 + ' and a length of 17', function(){
+    detectNetwork(p1.concat('123456780123')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p1 + ' and a length of 18', function(){
+    detectNetwork(p1.concat('12345678901234')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p1 + ' and a length of 19', function(){
+    detectNetwork(p1.concat('123456789012345')).should.equal('Maestro');
+    console.log(p1.concat('123456789012345'));
+  });
 
-    var pre = prefix_array[i];
+  var p2 = '5020';
+
+  it('has a prefix of ' + p2 + ' and a length of 12', function(){
+    detectNetwork(p2.concat('12345678')).should.equal('Maestro');
+    console.log("expect 502012345678 : "+ p2.concat('12345678'));
+  });
+  it('has a prefix of ' + p2 + ' and a length of 13', function(){
+    detectNetwork(p2.concat('123456789')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p2 + ' and a length of 14', function(){
+    detectNetwork(p2.concat('1234567890')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p2 + ' and a length of 15', function(){
+    detectNetwork(p2.concat('12345678901')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p2 + ' and a length of 16', function(){
+    detectNetwork(p2.concat('123456789012')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p2 + ' and a length of 17', function(){
+    detectNetwork(p2.concat('123456780123')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p2 + ' and a length of 18', function(){
+    detectNetwork(p2.concat('12345678901234')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p2 + ' and a length of 19', function(){
+    detectNetwork(p2.concat('123456789012345')).should.equal('Maestro');
+
+    console.log("expect 5020123456789012345 : "+ p2.concat('123456789012345'));
+  });
+
+  var p3 = '5038';
+
+  it('has a prefix of ' + p3 + ' and a length of 12', function(){
+    detectNetwork(p3.concat('12345678')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 13', function(){
+    detectNetwork(p3.concat('123456789')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 14', function(){
+    detectNetwork(p3.concat('1234567890')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 15', function(){
+    detectNetwork(p3.concat('12345678901')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 16', function(){
+    detectNetwork(p3.concat('123456789012')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 17', function(){
+    detectNetwork(p3.concat('123456780123')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 18', function(){
+    detectNetwork(p3.concat('12345678901234')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p3 + ' and a length of 19', function(){
+    detectNetwork(p3.concat('123456789012345')).should.equal('Maestro');
+  });
+
+  var p4 = '6304';
+
+  it('has a prefix of ' + p4 + ' and a length of 12', function(){
+    detectNetwork(p4.concat('12345678')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 13', function(){
+    detectNetwork(p4.concat('123456789')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 14', function(){
+    detectNetwork(p4.concat('1234567890')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 15', function(){
+    detectNetwork(p4.concat('12345678901')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 16', function(){
+    detectNetwork(p4.concat('123456789012')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 17', function(){
+    detectNetwork(p4.concat('123456780123')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 18', function(){
+    detectNetwork(p4.concat('12345678901234')).should.equal('Maestro');
+  });
+  it('has a prefix of ' + p4 + ' and a length of 19', function(){
+    detectNetwork(p4.concat('123456789012345')).should.equal('Maestro');
+  });
     
-    it('has a prefix of ' + pre + ' and a length of 12', function(){
-      detectNetwork(pre.concat('12345678')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 13', function(){
-      detectNetwork(pre.concat('123456789')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 14', function(){
-      detectNetwork(pre.concat('1234567890')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 15', function(){
-      detectNetwork(pre.concat('12345678901')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 16', function(){
-      detectNetwork(pre.concat('123456789012')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 17', function(){
-      detectNetwork(pre.concat('123456780123')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 18', function(){
-      detectNetwork(pre.concat('12345678901234')).should.equal('Maestro');
-    });
-    it('has a prefix of ' + pre + ' and a length of 19', function(){
-      detectNetwork(pre.concat('123456789012345')).should.equal('Maestro');
-    });
-  };
-
 });
 
 describe('should support China UnionPay')
