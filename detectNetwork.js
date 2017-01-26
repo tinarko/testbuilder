@@ -14,6 +14,7 @@ var detectNetwork = function(cardNumber) {
   var pre1 = cardNumber.substring(0,2);
   var pre2 = cardNumber.substring(0,3);
   var pre3 = cardNumber.substring(0,4);
+  var pre5 = cardNumber.substring(0,6);
 
   // The American Express network always starts with a 34 or 37 and is 15 digits long. (2 options total)
 
@@ -44,9 +45,48 @@ var detectNetwork = function(cardNumber) {
   	return 'MasterCard';
   }  
 
+  // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a 
+  // length of 16-19. (__ options total)
+  if (((pre5 >= 622126 && pre5 <=622925) || (pre2 >= 624 && pre2 <= 626) || (pre3 >= 6282 && pre3 <= 6288)) && (l >= 16 || l <=19)){
+    return 'China UnionPay';
+  }
+
+  // Switch and Visa seem to have some overlapping card numbers - in any apparent conflict, 
+  // you should choose the network with the longer prefix.
+
+  // Solving the above problem by checking for Switch first, since switch has longer prefixes. 
+  // If Switch does not return an answer, then check for VISA.
+
+  //Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a 
+  // length of 16, 18, or 19.
+
+  if (((pre3 == 4903 || pre3 == 4905 || pre3 == 4911 || pre3 == 4936 || pre3 == 6333 || pre3 == 6759) || 
+       (pre5 == 564182 || pre5 == 6331100)) && (l == 16 || l == 18 || l == 19)){
+    return 'Switch';
+  }
+
   // VISA always has a prefix of 4 and a length of 13, 16, or 19. (3 options total)
   if (pre0 == 4 && (l == 13 || l == 16 || l == 19)){
-  	return 'Visa';
+    return 'Visa';
   }
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
