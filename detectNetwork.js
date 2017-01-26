@@ -46,7 +46,7 @@ var detectNetwork = function(cardNumber) {
   }  
 
   // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a 
-  // length of 16-19. (__ options total)
+  // length of 16-19. 
   if (((pre5 >= 622126 && pre5 <=622925) || (pre2 >= 624 && pre2 <= 626) || (pre3 >= 6282 && pre3 <= 6288)) && (l >= 16 || l <=19)){
     return 'China UnionPay';
   }
@@ -61,7 +61,7 @@ var detectNetwork = function(cardNumber) {
   // length of 16, 18, or 19.
 
   if (((pre3 == 4903 || pre3 == 4905 || pre3 == 4911 || pre3 == 4936 || pre3 == 6333 || pre3 == 6759) || 
-       (pre5 == 564182 || pre5 == 6331100)) && (l == 16 || l == 18 || l == 19)){
+       (pre5 == 564182 || pre5 == 633110)) && (l == 16 || l == 18 || l == 19)){
     return 'Switch';
   }
 

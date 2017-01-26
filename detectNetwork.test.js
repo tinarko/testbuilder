@@ -61,6 +61,8 @@ describe('Diner\'s Club', function() {
   });
 });
 
+var assert = chai.assert;
+
 describe('American Express', function() {
   // It can get annoying to keep typing the if/throw, so here is a
   // helper function to throw an error if the input statement isn't true. 
@@ -77,27 +79,6 @@ describe('American Express', function() {
 
   it('has a prefix of 37 and a length of 15', function() {
     assert(detectNetwork('373456789012345') !== 'American Express');
-  });
-});
-
-
-describe('Visa', function() {
-  // Chai is an entire library of helper functions for tests!
-  // Chai provides an assert that acts the same as our previous assert.
-  // Search the documentation to figure out how to access it. 
-  //   http://chaijs.com/
-  var assert = chai.assert;
-
-  it('has a prefix of 4 and a length of 13', function() {
-    assert(detectNetwork('4123456789012') === 'Visa');
-  });
-
-  it('has a prefix of 4 and a length of 16', function() {
-    assert(detectNetwork('4123456789012345') === 'Visa');
-  });
-
-  it('has a prefix of 4 and a length of 19', function() {
-    assert(detectNetwork('4123456789012345678') === 'Visa');
   });
 });
 
@@ -122,7 +103,6 @@ describe('MasterCard', function() {
   it('has a prefix of 53 and has a length of 16', function() {
     detectNetwork('5312345678901234').should.equal('MasterCard');
   });
- 
 
   // You can also use should instead of expect, which changes the style
   // slightly. It really doesn't matter which one you use - check out 
@@ -144,8 +124,6 @@ describe('MasterCard', function() {
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
-
-
 
   for (var prefix = 644; prefix <= 649; prefix++) {
     (function(prefix) {
@@ -285,5 +263,173 @@ describe('Maestro', function() {
     
 });
 
-describe('should support China UnionPay')
-describe('should support Switch')
+describe('should support China UnionPay', function(){
+  
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        detectNetwork(prefix.toString().concat('1234567890')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 17', function(){
+        detectNetwork(prefix.toString().concat('12345678901')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 18', function(){
+        detectNetwork(prefix.toString().concat('123456789012')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        detectNetwork(prefix.toString().concat('1234567890123')).should.equal('China UnionPay');
+      });
+
+    })(prefix)
+  }
+
+  for (var prefix = 624; prefix <= 626; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        detectNetwork(prefix.toString().concat('1234567890123')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 17', function(){
+        detectNetwork(prefix.toString().concat('12345678901234')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 18', function(){
+        detectNetwork(prefix.toString().concat('123456789012345')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        detectNetwork(prefix.toString().concat('1234567890123456')).should.equal('China UnionPay');
+      });
+
+    }) (prefix)
+  }
+
+  for (var prefix = 6282; prefix <= 6288; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        detectNetwork(prefix.toString().concat('123456789012')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 17', function(){
+        detectNetwork(prefix.toString().concat('1234567890123')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 18', function(){
+        detectNetwork(prefix.toString().concat('12345678901234')).should.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        detectNetwork(prefix.toString().concat('123456789012345')).should.equal('China UnionPay');
+      });
+
+    })(prefix)
+  }
+
+});
+
+describe('Switch', function() {
+
+   var should = chai.should()
+
+  it('has a prefix of 4903 and a length of 16', function(){
+    detectNetwork('4903123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 4905 and a length of 16', function(){
+    detectNetwork('4905123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 4911 and a length of 16', function(){
+    detectNetwork('4911123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 4936 and a length of 16', function(){
+    detectNetwork('4936123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 6333 and a length of 16', function(){
+    detectNetwork('6333123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 6759 and a length of 16', function(){
+    detectNetwork('6759123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 564182 and a length of 16', function(){
+    detectNetwork('5641821234567890').should.equal('Switch')
+  });
+  it('has a prefix of 633110 and a length of 16', function(){
+    detectNetwork('6331101234567890').should.equal('Switch')
+  });
+    
+  it('has a prefix of 4903 and a length of 18', function(){
+    detectNetwork('490312345678901234').should.equal('Switch')
+  });
+  it('has a prefix of 4905 and a length of 18', function(){
+    detectNetwork('490512345678901234').should.equal('Switch')
+  });
+  it('has a prefix of 4911 and a length of 18', function(){
+    detectNetwork('491112345678901234').should.equal('Switch')
+  });
+  it('has a prefix of 4936 and a length of 18', function(){
+    detectNetwork('493612345678901234').should.equal('Switch')
+  });
+  it('has a prefix of 6333 and a length of 18', function(){
+    detectNetwork('633312345678901234').should.equal('Switch')
+  });
+  it('has a prefix of 6759 and a length of 18', function(){
+    detectNetwork('675912345678901234').should.equal('Switch')
+  });
+  it('has a prefix of 564182 and a length of 18', function(){
+    detectNetwork('564182123456789012').should.equal('Switch')
+  });
+  it('has a prefix of 633110 and a length of 18', function(){
+    detectNetwork('633110123456789012').should.equal('Switch')
+  });
+
+
+  it('has a prefix of 4903 and a length of 19', function(){
+    detectNetwork('4903123456789012345').should.equal('Switch')
+  });
+  it('has a prefix of 4905 and a length of 19', function(){
+    detectNetwork('4905123456789012345').should.equal('Switch')
+  });
+  it('has a prefix of 4911 and a length of 19', function(){
+    detectNetwork('4911123456789012345').should.equal('Switch')
+  });
+  it('has a prefix of 4936 and a length of 19', function(){
+    detectNetwork('4936123456789012345').should.equal('Switch')
+  });
+  it('has a prefix of 6333 and a length of 19', function(){
+    detectNetwork('6333123456789012345').should.equal('Switch')
+  });
+  it('has a prefix of 6759 and a length of 19', function(){
+    detectNetwork('6759123456789012345').should.equal('Switch')
+  });
+  it('has a prefix of 564182 and a length of 19', function(){
+    detectNetwork('5641821234567890123').should.equal('Switch')
+  });
+  it('has a prefix of 633110 and a length of 19', function(){
+    detectNetwork('6331101234567890123').should.equal('Switch')
+  });
+
+});
+
+describe('Visa', function() {
+  // Chai is an entire library of helper functions for tests!
+  // Chai provides an assert that acts the same as our previous assert.
+  // Search the documentation to figure out how to access it. 
+  //   http://chaijs.com/
+
+  it('has a prefix of 4 and a length of 13', function() {
+    assert(detectNetwork('4123456789012') === 'Visa');
+  });
+
+  it('has a prefix of 4 and a length of 16', function() {
+    assert(detectNetwork('4123456789012345') === 'Visa');
+  });
+
+  it('has a prefix of 4 and a length of 19', function() {
+    assert(detectNetwork('4123456789012345678') === 'Visa');
+  });
+});
